@@ -15,7 +15,7 @@ class Cat:
         self.dataDrive = 'C:/'
         self.saveDrive = './'
 
-        self.timeString = time.strftime("%Y-%m-%d_%H-%M-%S")
+        self.timeString = time.strftime("%Y-%b-%d_%H-%M-%S")
         self.steamPath = os.path.join(self.dataDrive,'Program Files (x86)/Steam/SteamApps/common/')
         self.userFolders = os.path.join(self.dataDrive, 'Users/', os.path.expanduser('~'))
 
@@ -39,7 +39,7 @@ class Cat:
         self.saveDrive = os.path.join(self.userFolders,'Google Drive')
 
     def updateFilePaths(self):
-        self.timeString = time.strftime("%Y-%m-%d_%H-%M-%S")
+        self.timeString = time.strftime("%Y-%b-%d_%H-%M-%S")
         self.steamPath = os.path.join(self.dataDrive, 'Program Files (x86)/Steam/SteamApps/common/')
         self.userFolders = os.path.join(self.dataDrive, 'Users/', os.path.expanduser('~'))
 
