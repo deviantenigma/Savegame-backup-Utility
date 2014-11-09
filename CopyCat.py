@@ -9,6 +9,7 @@ class Cat:
         self.starboundPlayerBoolean = False
         self.starboundPlanetBoolean = False
         self.vanillaMinecraftBoolean = False
+        self.riskofRainBoolean = False
 
         self.booleanSwitcher = (lambda booleanInput: False if booleanInput else True)
 
@@ -47,14 +48,17 @@ class Cat:
     ################# Copy Boolean Functions ##############
     #######################################################
 
-    def StarboundPlayerStatus(self):
+    def StarboundPlayerStatusToggle(self):
         self.starboundPlayerBoolean = self.booleanSwitcher(self.starboundPlayerBoolean)
 
-    def StarboundPlanetStatus(self):
+    def StarboundPlanetStatusToggle(self):
         self.starboundPlanetBoolean = self.booleanSwitcher(self.starboundPlanetBoolean)
 
-    def VanillaMinecraftStatus(self):
+    def VanillaMinecraftStatusToggle(self):
         self.vanillaMinecraftBoolean = self.booleanSwitcher(self.vanillaMinecraftBoolean)
+
+    def RiskOfRainStatusToggle(self):
+        self.riskofRainBoolean = self.booleanSwitcher(self.riskofRainBoolean)
 
     #######################################################
     ############ Obligatory long if function ##############
@@ -79,8 +83,17 @@ class Cat:
             shutil.copytree(steamSrcMaker('Starbound/universe/'), MultiSaveFolderDstMaker('starbound','universe'))
 
         if self.vanillaMinecraftBoolean:
-            src = os.path.join(self.userFolders,'AppData/Roaming/.minecraft/saves')
-            dst = os.path.join(self.saveDrive,'minecraft',self.timeString)
+            src = os.path.join(self.userFolders, 'AppData/Roaming/.minecraft/saves')
+            dst = os.path.join(self.saveDrive, 'minecraft', self.timeString)
             shutil.copytree(src, dst)
+
+        if self.riskofRainBoolean:
+            #still needs work
+            src = os.path.join(steamSrcMaker('Risk of Rain/'), 'Save.ini')
+            dst = os.path.join('riskofrain/', self.timeString)
+            os.makedirs(dst)
+            shutil.copy2(src, dst)
+
+
 
 copierCat = Cat()

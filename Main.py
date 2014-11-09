@@ -67,21 +67,25 @@ class Main:
 
         #Checklist, needs its own frame eventually
         self.starboundPlayer = tkinter.Checkbutton(self.buttonframe, text="Starbound Player Files",
-                                              command=self.copierCat.StarboundPlayerStatus)
+                                              command=self.copierCat.StarboundPlayerStatusToggle)
 
         self.starboundPlanet = tkinter.Checkbutton(self.buttonframe, text="Starbound Planet Files",
-                                              command=self.copierCat.StarboundPlanetStatus)
+                                              command=self.copierCat.StarboundPlanetStatusToggle)
 
         self.MinecraftWorlds = tkinter.Checkbutton(self.buttonframe, text="Minecraft World Files",
-                                              command=self.copierCat.VanillaMinecraftStatus)
+                                              command=self.copierCat.VanillaMinecraftStatusToggle)
+        self.RiskOfRain = tkinter.Checkbutton(self.buttonframe, text="Risk of Rain",
+                                              command=self.copierCat.RiskOfRainStatusToggle)
 
         #Copy Button
         self.onlybutton = tkinter.Button(self.buttonframe, text='Back Up Files', command=self.copytest) #self.copytest
 
         # Pack Widgets
+
         self.starboundPlayer.pack(side='top')
         self.starboundPlanet.pack(side='top')
         self.MinecraftWorlds.pack(side='top')
+        self.RiskOfRain.pack(side='top')
         self.onlybutton.pack(side='top')
 
     def fillTextFrame(self):
