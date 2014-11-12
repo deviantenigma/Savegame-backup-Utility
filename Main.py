@@ -7,6 +7,9 @@ import glob
 import tkinter
 import tkinter.messagebox
 import CopyCat
+import string
+import os
+
 
 class Main:
     def __init__(self):
@@ -50,9 +53,15 @@ class Main:
         filemenu.add_command(label="Exit",command=self.main_window.quit)
 
         #DriveMenu
+
+        self.drive = 'C'
         menubar.add_cascade(label="Drive", menu=drivemenu)
-        drivemenu.add_radiobutton(label='C',command=self.copierCat.setDataDriveToC)
-        drivemenu.add_radiobutton(label='D',command=self.copierCat.setDataDriveToD)
+        #drivemenu.add_radiobutton(label='C',command=self.copierCat.setDataDriveToC)
+        #drivemenu.add_radiobutton(label='D',command=self.copierCat.setDataDriveToD)
+        for letter in string.ascii_uppercase:
+            if os.path.exists("%s:/" % (letter)):
+                drivemenu.add_radiobutton(label=letter, command=lambda labelletter=letter:
+                                          self.changeSaveDrive(labelletter))
 
         #SavetoMenu
         menubar.add_cascade(label="Save To", menu=savetomenu)
@@ -67,13 +76,14 @@ class Main:
 
         #Checklist, needs its own frame eventually
         self.starboundPlayer = tkinter.Checkbutton(self.buttonframe, text="Starbound Player Files",
-                                              command=self.copierCat.StarboundPlayerStatusToggle)
+                                                   command=self.copierCat.StarboundPlayerStatusToggle)
 
         self.starboundPlanet = tkinter.Checkbutton(self.buttonframe, text="Starbound Planet Files",
-                                              command=self.copierCat.StarboundPlanetStatusToggle)
+                                                   command=self.copierCat.StarboundPlanetStatusToggle)
 
         self.MinecraftWorlds = tkinter.Checkbutton(self.buttonframe, text="Minecraft World Files",
-                                              command=self.copierCat.VanillaMinecraftStatusToggle)
+                                                   command=self.copierCat.VanillaMinecraftStatusToggle)
+
         self.RiskOfRain = tkinter.Checkbutton(self.buttonframe, text="Risk of Rain",
                                               command=self.copierCat.RiskOfRainStatusToggle)
 
@@ -113,12 +123,14 @@ class Main:
 
     def copytest(self):
         self.copierCat.determineGamesToCopy()
-        tkinter.messagebox.showinfo("Files Copied",'The files have been copied')
+        tkinter.messagebox.showinfo("Files Copied", 'The files have been copied')
 
     def updatetextbox(self, name):
         self.textbox.insert(tkinter.INSERT, name)
         self.textbox.insert(tkinter.INSERT, '\n')
 
+    def changeSaveDrive(self,drive):
+        self.copierCat.setDataDrive(drive)
 
 window = Main()
 

@@ -3,7 +3,7 @@ import os
 import time
 
 
-class Cat:
+class CopyCat:
 
     def __init__(self):
         self.starboundPlayerBoolean = False
@@ -23,6 +23,10 @@ class Cat:
     #######################################################
     ################# File Path Functions #################
     #######################################################
+
+    def setDataDrive(self,drive):
+        self.dataDrive = drive + r':/'
+        print(self.dataDrive)
 
     def setDataDriveToC(self):
         self.dataDrive = 'C:/'
@@ -96,4 +100,4 @@ class Cat:
 
 
 
-copierCat = Cat()
+copierCat = CopyCat()
