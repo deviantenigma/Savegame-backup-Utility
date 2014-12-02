@@ -28,20 +28,11 @@ class CopyCat:
         self.dataDrive = drive + r':/'
         print(self.dataDrive)
 
-    def setDataDriveToC(self):
-        self.dataDrive = 'C:/'
-
-    def setDataDriveToD(self):
-        self.dataDrive = 'D:/'
-
-    def setSavedriveToHdd(self):
+    def setSavedriveToSameDirectory(self):
         self.saveDrive = './'
 
-    def setSaveDriveToDropBox(self):
-        self.saveDrive = os.path.join(self.userFolders,'dropbox/apps')
-
-    def setSaveDriveToGoogleDrive(self):
-        self.saveDrive = os.path.join(self.userFolders,'Google Drive')
+    def setSaveDrive(self, location):
+        self.saveDrive = os.path.join(self.userFolders, location)
 
     def updateFilePaths(self):
         self.timeString = time.strftime("%Y-%b-%d_%H-%M-%S")
@@ -73,18 +64,18 @@ class CopyCat:
         self.updateFilePaths()
 
         steamSrcMaker = (lambda gameSpecifics: os.path.join(self.steamPath,gameSpecifics))
-        MultiSaveFolderDstMaker = (lambda gameName, saveType:os.path.join(self.saveDrive, gameName,
-                                                                          saveType, self.timeString, saveType))
+        MultiSaveFolderDstMaker = (lambda gameName, saveType: os.path.join(self.saveDrive, gameName,
+                                   saveType, self.timeString, saveType))
 
         if self.starboundPlayerBoolean:
             #src = os.path.join(self.steamPath,'Starbound/player/')
             #dst = os.path.join(self.saveDrive, 'starbound/player', self.timeString, 'player')
-            shutil.copytree(steamSrcMaker('Starbound/player/'), MultiSaveFolderDstMaker('starbound','player'))
+            shutil.copytree(steamSrcMaker('Starbound/player/'), MultiSaveFolderDstMaker('starbound', 'player'))
 
         if self.starboundPlanetBoolean:
             #src = os.path.join(self.steamPath,'Starbound/universe/')
             #dst = os.path.join(self.saveDrive, 'starbound/universe', self.timeString,'universe')
-            shutil.copytree(steamSrcMaker('Starbound/universe/'), MultiSaveFolderDstMaker('starbound','universe'))
+            shutil.copytree(steamSrcMaker('Starbound/universe/'), MultiSaveFolderDstMaker('starbound', 'universe'))
 
         if self.vanillaMinecraftBoolean:
             src = os.path.join(self.userFolders, 'AppData/Roaming/.minecraft/saves')
@@ -100,4 +91,4 @@ class CopyCat:
 
 
 
-copierCat = CopyCat()
+#copierCat = CopyCat()

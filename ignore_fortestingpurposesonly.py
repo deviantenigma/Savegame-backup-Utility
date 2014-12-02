@@ -44,12 +44,12 @@ def click_button(event):
 
 Lb1 = tkinter.Listbox(top,selectmode='extended')
 #Lb1.bind('<<ListboxSelect>>', click_button)
-Lb1.insert(1, "Python")
-Lb1.insert(2, "Perl")
-Lb1.insert(3, "C")
-Lb1.insert(4, "PHP")
-Lb1.insert(5, "JSP")
-Lb1.insert(6, "Ruby")
+Lb1.insert(0, "Python")
+Lb1.insert(0, "Perl")
+Lb1.insert(0, "C")
+Lb1.insert(0, "PHP")
+Lb1.insert(0, "JSP")
+Lb1.insert(0, "Ruby")
 
 def btnclick():
     values = [Lb1.get(x) for x in Lb1.curselection()]

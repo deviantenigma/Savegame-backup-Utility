@@ -17,7 +17,7 @@ class Main:
 
         self.main_window.wm_title("Sun's Backup Utility")
 
-        self.copierCat = CopyCat.copierCat
+        self.copierCat = CopyCat.CopyCat()
 
         self.windowCreate()
 
@@ -50,24 +50,26 @@ class Main:
 
         #FileMenu
         menubar.add_cascade(label="File", menu=filemenu)
-        filemenu.add_command(label="Exit",command=self.main_window.quit)
+        filemenu.add_command(label="Exit", command=self.main_window.quit)
 
         #DriveMenu
-
         self.drive = 'C'
         menubar.add_cascade(label="Drive", menu=drivemenu)
-        #drivemenu.add_radiobutton(label='C',command=self.copierCat.setDataDriveToC)
-        #drivemenu.add_radiobutton(label='D',command=self.copierCat.setDataDriveToD)
         for letter in string.ascii_uppercase:
-            if os.path.exists("%s:/" % (letter)):
+            if os.path.exists("%s:/" % letter):
                 drivemenu.add_radiobutton(label=letter, command=lambda labelletter=letter:
                                           self.changeSaveDrive(labelletter))
 
         #SavetoMenu
         menubar.add_cascade(label="Save To", menu=savetomenu)
-        savetomenu.add_radiobutton(label='Hard Drive',command=self.copierCat.setSavedriveToHdd)
-        savetomenu.add_radiobutton(label='DropBox Folder',command=self.copierCat.setSaveDriveToDropBox)
-        savetomenu.add_radiobutton(label='Google Drive Folder', command=self.copierCat.setSaveDriveToGoogleDrive)
+        savetomenu.add_radiobutton(label='Hard Drive: Program Folder',
+                                   command=self.copierCat.setSavedriveToSameDirectory)
+        savetomenu.add_radiobutton(label='Hard Drive: Documents',command=lambda: self.copierCat.setSaveDrive(
+                                   'Documents/SunsBackupUtilitysaves'))
+        savetomenu.add_radiobutton(label='DropBox Folder', command=lambda: self.copierCat.setSaveDrive
+                                  ('dropbox/apps/SunsBackupUtilitysaves'))
+        savetomenu.add_radiobutton(label='Google Drive Folder', command=lambda: self.copierCat.setSaveDrive
+                                  ('Google Drive/SunsBackupUtilitysaves'))
 
         self.main_window.config(menu=menubar)
 
