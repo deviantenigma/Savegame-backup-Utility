@@ -19,7 +19,7 @@ class Main:
 
         self.copierCat = CopyCat.CopyCat()
 
-        self.windowCreate()
+        self.createWindow()
 
         tkinter.mainloop()
 
@@ -27,19 +27,22 @@ class Main:
     #################### Window Creation ##################
     #######################################################
 
-    def windowCreate(self):
-        self.frameCreate()
-        self.fillMenuFrame()
-        self.fillButtonFrame()
-        self.fillTextFrame()
+    def createWindow(self):
+        self.createFrames()
+        self.fillFrames()
         self.packFrames()
 
-    def frameCreate(self):
-        # Frame Creation
+    def createFrames(self):
         self.fullFrame = tkinter.Frame()
         self.menuframe = tkinter.Frame(self.fullFrame)
         self.buttonframe = tkinter.Frame(self.fullFrame)
-        self.textframe = tkinter.Frame(self.fullFrame)
+        #self.textframe = tkinter.Frame(self.fullFrame)
+
+    def fillFrames(self):
+        self.fillMenuFrame()
+        self.fillButtonFrame()
+        #self.fillTextFrame()
+
 
     def fillMenuFrame(self):
         # Menu Frame
@@ -100,6 +103,7 @@ class Main:
         self.RiskOfRain.pack(side='top')
         self.onlybutton.pack(side='top')
 
+    '''
     def fillTextFrame(self):
         # add a vertical scroll bar to the text area
         self.scroll = tkinter.Scrollbar(self.textframe, jump=0)
@@ -110,13 +114,13 @@ class Main:
 
         #Pack Widgets
         self.scroll.pack(side='right', fill='y')
-        self.textbox.pack(side='top')
+        self.textbox.pack(side='top')'''
 
     def packFrames(self):
         # Pack frames
         self.menuframe.pack()
         self.buttonframe.pack(padx=20, pady=40)
-        self.textframe.pack()
+        #self.textframe.pack()
         self.fullFrame.pack(padx=20, pady=20)
 
     #######################################################
@@ -127,9 +131,9 @@ class Main:
         self.copierCat.determineGamesToCopy()
         tkinter.messagebox.showinfo("Files Copied", 'The files have been copied')
 
-    def updatetextbox(self, name):
+    '''def updatetextbox(self, name):
         self.textbox.insert(tkinter.INSERT, name)
-        self.textbox.insert(tkinter.INSERT, '\n')
+        self.textbox.insert(tkinter.INSERT, '\n')'''
 
     def changeSaveDrive(self,drive):
         self.copierCat.setDataDrive(drive)
